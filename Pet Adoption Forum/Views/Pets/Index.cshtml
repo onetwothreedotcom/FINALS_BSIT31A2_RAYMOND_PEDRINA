@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Pet_Adoption_Forum.Models.Pet>
+@{
+    ViewData["Title"] = "Available Pets";
+}
+
+<h2>Available Pets</h2>
+
+<div class="row">
+    @foreach (var pet in Model)
+    {
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="@pet.ImageUrl" class="card-img-top" alt="@pet.Name" />
+                <div class="card-body">
+                    <h5 class="card-title">@pet.Name</h5>
+                    <p class="card-text">@pet.Breed - @pet.Age yrs</p>
+                    <a class="btn btn-primary" href="@Url.Action("Details", "Pets", new { id = pet.Id })">View Details</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
