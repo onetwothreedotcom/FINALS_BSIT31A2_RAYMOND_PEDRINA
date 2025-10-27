@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Pet_Adoption_Forum.Models.AdoptionRequest>
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h2>Pending Adoption Requests</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Pet</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Age</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model)
+        {
+            <tr>
+                <td>@request.PetName</td>
+                <td>@request.FullName</td>
+                <td>@request.Email</td>
+                <td>@request.PhoneNumber</td>
+                <td>@request.Age</td>
+                <td>
+                    <form asp-action="ApproveAdoption" method="post">
+                        <input type="hidden" name="id" value="@request.Id" />
+                        <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-primary" href="@Url.Action("AddPet", "Admin")">Add New Pet</a>
