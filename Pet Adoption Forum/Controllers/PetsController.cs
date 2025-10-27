@@ -16,7 +16,13 @@ namespace Pet_Adoption_Forum.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var pets = await _context.Pets.ToListAsync();
+            var pets = await _context.Pets.Where(p => !p.IsAdopted).ToListAsync();
+            return View(pets);
+        }
+
+        public async Task<IActionResult> Adopted()
+        {
+            var pets = await _context.Pets.Where(p => p.IsAdopted).ToListAsync();
             return View(pets);
         }
 
@@ -48,6 +54,13 @@ namespace Pet_Adoption_Forum.Controllers
             {
                 request.RequestDate = DateTime.Now;
                 request.Status = "Pending";
+
+                // Populate PetName from the Pet entity
+                var pet = await _context.Pets.FindAsync(request.PetId);
+                if (pet != null)
+                {
+                    request.PetName = pet.Name;
+                }
 
                 _context.AdoptionRequests.Add(request);
                 await _context.SaveChangesAsync();

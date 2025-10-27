@@ -1,3 +1,16 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Pet Adoption Forum</h1>
+    <p class="lead">Find your perfect pet companion!</p>
+    <div class="mt-4">
+        <a class="btn btn-primary btn-lg me-2" asp-controller="Pets" asp-action="Index">View Available Pets</a>
+        <a class="btn btn-secondary btn-lg" asp-controller="Pets" asp-action="Adopted">View Adopted Pets</a>
+    </div>
+</div>
+
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
