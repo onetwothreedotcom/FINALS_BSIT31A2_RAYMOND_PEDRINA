@@ -1,6 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Pet_Adoption_Forum.Models;
+using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace PetAdoption.Models
+namespace Pet_Adoption_Forum.Models  
 {
     public class AdoptionRequest
     {
@@ -8,21 +10,29 @@ namespace PetAdoption.Models
 
         [Required]
         public int PetId { get; set; }
-        public Pet Pet { get; set; }
+
+        public Pet Pet { get; set; } = null!;
 
         [Required]
-        public string FullName { get; set; }
+        public string FullName { get; set; } = string.Empty;
 
         [Required]
         [Phone]
-        public string PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; } = string.Empty;
 
         [Required]
         [EmailAddress]
-        public string Email { get; set; }
+        public string Email { get; set; } = string.Empty;
 
+        [Required]
         public int Age { get; set; }
 
-        public bool IsSelected { get; set; } = false;
+        public bool IsSelected { get; set; } = false; 
+
+        public string Status { get; set; } = "Pending";  
+
+        public DateTime RequestDate { get; set; } = DateTime.Now;
+
+        public string PetName { get; set; } = string.Empty; 
     }
 }

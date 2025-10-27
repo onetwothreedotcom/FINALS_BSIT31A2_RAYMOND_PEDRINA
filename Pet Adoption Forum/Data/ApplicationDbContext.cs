@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Pet_Adoption_Forum.Models;
-using PetAdoption.Models;
 
 namespace Pet_Adoption_Forum.Data
 {
