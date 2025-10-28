@@ -43,7 +43,7 @@ namespace Pet_Adoption_Forum.Controllers
             var pet = await _context.Pets.FindAsync(id);
             if (pet == null) return NotFound();
 
-            return View(new AdoptionRequest { PetId = pet.Id, PetName = pet.Name });
+            return View(new AdoptionRequest { Id = 0, PetId = pet.Id, PetName = pet.Name });
         }
 
         [HttpPost]
@@ -67,6 +67,8 @@ namespace Pet_Adoption_Forum.Controllers
                     return RedirectToAction(nameof(Index));
                 }
 
+                // Ensure Id is 0 for new entities
+                request.Id = 0;
                 request.RequestDate = DateTime.Now;
                 request.Status = "Pending";
 
