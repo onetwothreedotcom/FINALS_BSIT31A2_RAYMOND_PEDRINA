@@ -50,6 +50,9 @@ namespace Pet_Adoption_Forum.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Adopt(AdoptionRequest request)
         {
+            // Remove Pet from model validation since it's not submitted in the form
+            ModelState.Remove("Pet");
+            
             if (ModelState.IsValid)
             {
                 request.RequestDate = DateTime.Now;
