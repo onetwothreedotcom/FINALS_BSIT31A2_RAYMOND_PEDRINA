@@ -55,6 +55,18 @@ namespace Pet_Adoption_Forum.Controllers
             
             if (ModelState.IsValid)
             {
+                // Check if user already submitted a request for this pet
+                var existingRequest = await _context.AdoptionRequests
+                    .FirstOrDefaultAsync(r => r.PetId == request.PetId && 
+                                            r.Email == request.Email && 
+                                            r.Status == "Pending");
+
+                if (existingRequest != null)
+                {
+                    TempData["Error"] = "You have already submitted a request for this pet.";
+                    return RedirectToAction(nameof(Index));
+                }
+
                 request.RequestDate = DateTime.Now;
                 request.Status = "Pending";
 
