@@ -22,7 +22,7 @@ namespace Pet_Adoption_Forum.Controllers
         [HttpPost]
         public IActionResult Login(string username, string password)
         {
-            if (username == "admin" && password == "password")
+            if (username == "admin" && password == "Password123!")
             {
                 HttpContext.Session.SetString("IsAdmin", "true");
                 return RedirectToAction("Dashboard");
