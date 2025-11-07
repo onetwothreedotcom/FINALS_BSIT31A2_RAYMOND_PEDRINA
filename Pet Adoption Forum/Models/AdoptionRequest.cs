@@ -17,7 +17,8 @@ namespace Pet_Adoption_Forum.Models
         public string FullName { get; set; } = string.Empty;
 
         [Required]
-        [Phone]
+        [StringLength(11, MinimumLength = 11, ErrorMessage = "Phone number must be exactly 11 digits.")]
+        [RegularExpression(@"^\d{11}$", ErrorMessage = "Phone number must contain exactly 11 digits.")]
         public string PhoneNumber { get; set; } = string.Empty;
 
         [Required]
